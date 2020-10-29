@@ -16,15 +16,27 @@ public class ListController {
 
     private final ListService listService;
 
+    /**
+     * Конструктор
+     *
+     * @param listService
+     */
     public ListController(ListService listService) {
         this.listService = listService;
     }
 
+    /**
+     * Метод для проверки подключения
+     */
     @GetMapping("/ping")
     public String ping() {
         return "pong";
     }
 
+    /**
+     * @param list - запрос на создание (параметр - имя списка)
+     * @return ответ на запрос (созданный список)
+     */
     @PostMapping("/list")
     @ResponseStatus(HttpStatus.CREATED)
     public ListResponse createList(@RequestBody ListRequest list) {

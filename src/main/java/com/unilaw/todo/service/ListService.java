@@ -38,6 +38,12 @@ public class ListService implements IListService {
         return null;
     }
 
+    /**
+     * Инициализация полей сущности, сохранение в БД
+     *
+     * @param listRequest - данные для создания списка
+     * @return ответ на запрос (формируется в методе)
+     */
     @Override
     public ListResponse createList(ListRequest listRequest) {
         ListEntity list = new ListEntity();
@@ -65,10 +71,11 @@ public class ListService implements IListService {
 
     /**
      * Формирование ответа (список)
+     *
      * @param entity - объект сущности (созданный список)
      * @return ответ на запрос
      */
-    private static ListResponse createListResponse(ListEntity entity){
+    private static ListResponse createListResponse(ListEntity entity) {
         ListResponse listResponse = new ListResponse();
         listResponse.setId(entity.getId());
         listResponse.setName(entity.getName());
