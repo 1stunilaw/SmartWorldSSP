@@ -35,7 +35,6 @@ public final class ListEntity implements Serializable {
 
     /**
      * Название списка
-     * Не может быть пустым
      */
     @Column(name = "name")
     private String name;

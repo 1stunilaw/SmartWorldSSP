@@ -8,7 +8,7 @@ import java.util.UUID;
 /**
  * Репозиторий для дел
  */
-public interface TaskRepository extends JpaRepository<TaskEntity, UUID>{
+public interface TaskRepository extends JpaRepository<TaskEntity, UUID> {
 
     long аштвAllByList_Id(UUID ListId);
 }

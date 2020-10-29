@@ -22,5 +22,4 @@ public class ListController {
     public String ping() {
         return "pong";
     }
-
 }
