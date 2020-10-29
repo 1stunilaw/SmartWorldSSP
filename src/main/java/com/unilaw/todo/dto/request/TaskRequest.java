@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 /**
- * Запрос на создание задание
+ * Запрос на создание дела (задачи)
  */
 @Data
 public class TaskRequest implements Serializable {
