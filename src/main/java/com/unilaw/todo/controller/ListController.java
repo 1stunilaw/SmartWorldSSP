@@ -1,25 +1,33 @@
 package com.unilaw.todo.controller;
 
-import com.unilaw.todo.model.ListEntity;
+import com.unilaw.todo.dto.request.ListRequest;
+import com.unilaw.todo.dto.response.ListResponse;
 import com.unilaw.todo.repository.ListRepository;
+import com.unilaw.todo.service.ListService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.*;
-import java.sql.Timestamp;
-import java.util.*;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
 public class ListController {
 
-    @Autowired
-    private ListRepository listRepository;
+    private final ListService listService;
+
+    public ListController(ListService listService) {
+        this.listService = listService;
+    }
 
     @GetMapping("/ping")
     public String ping() {
         return "pong";
+    }
+
+    @PostMapping("/list")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ListResponse createList(@RequestBody ListRequest list) {
+        return listService.createList(list);
     }
 }
