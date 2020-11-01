@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Реализация интерфейса
@@ -34,8 +35,15 @@ public class ListService implements IListService {
     }
 
     @Override
-    public AllListsResponse getLists() {
-        return null;
+    public AllListsResponse getLists() { //TODO: добавить сортировку, фильтрацию, пагинацию
+        List<ListEntity> lists = listRepository.findAll();
+
+        List<ListResponse> listResponse = lists.stream().map(ListService::createListResponse).collect(Collectors.toList());
+
+        AllListsResponse allListResponse = new AllListsResponse();
+        allListResponse.setLists(listResponse);
+
+        return allListResponse;
     }
 
     /**

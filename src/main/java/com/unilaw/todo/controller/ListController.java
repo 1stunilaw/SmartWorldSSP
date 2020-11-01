@@ -1,7 +1,7 @@
 package com.unilaw.todo.controller;
 
 import com.unilaw.todo.dto.request.ListRequest;
-import com.unilaw.todo.dto.response.ListResponse;
+import com.unilaw.todo.dto.response.*;
 import com.unilaw.todo.repository.ListRepository;
 import com.unilaw.todo.service.ListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +34,8 @@ public class ListController {
     }
 
     /**
+     * Метод создания списка
+     *
      * @param list - запрос на создание (параметр - имя списка)
      * @return ответ на запрос (созданный список)
      */
@@ -41,5 +43,15 @@ public class ListController {
     @ResponseStatus(HttpStatus.CREATED)
     public ListResponse createList(@RequestBody ListRequest list) {
         return listService.createList(list);
+    }
+
+    /**
+     * Метод возврата списка списков
+     *
+     * @return список списков
+     */
+    @DeleteMapping("/lists")
+    public AllListsResponse getLists() {
+        return listService.getLists();
     }
 }
