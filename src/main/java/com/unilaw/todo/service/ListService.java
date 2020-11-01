@@ -34,6 +34,11 @@ public class ListService implements IListService {
         this.listRepository = listRepository;
     }
 
+    /**
+     * Формирование ответа (список списков)
+     *
+     * @return ответ-список списков
+     */
     @Override
     public AllListsResponse getLists() { //TODO: добавить сортировку, фильтрацию, пагинацию
         List<ListEntity> lists = listRepository.findAll();
@@ -67,14 +72,38 @@ public class ListService implements IListService {
         return createListResponse(list);
     }
 
+    /**
+     * Изменение списка по id
+     *
+     * @param listRequest - данные для изменения списка
+     * @param listId      -  идентификатор изменяемого списка
+     * @return ответ на запрос (формируется в методе)
+     * @throws NotFoundException
+     */
     @Override
     public ListResponse changeList(ListRequest listRequest, UUID listId) throws NotFoundException {
-        return null;
+        ListEntity list = listRepository.findById(listId).orElseThrow(() -> new NotFoundException("Couldn't find list with id"));
+
+        list.setName(listRequest.getName());
+        list.setUpdatedDate(LocalDateTime.now());
+        listRepository.save(list);
+
+        return createListResponse(list);
     }
 
+    /**
+     * Удаление списка по id
+     *
+     * @param listId - идентификатор удаляемого списка
+     * @throws NotFoundException
+     */
     @Override
     public void deleteList(UUID listId) throws NotFoundException {
+        if (!listRepository.existsById(listId)) {
+            throw new NotFoundException("Couldn't find list with id");
+        }
 
+        listRepository.deleteById(listId);
     }
 
     /**
