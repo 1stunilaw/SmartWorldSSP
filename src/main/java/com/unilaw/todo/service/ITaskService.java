@@ -36,7 +36,7 @@ public interface ITaskService {
     void deleteTask(UUID taskId) throws NotFoundException;
 
     /**
-     * Отметить задание как выполненное
+     * Отметить дело как выполненное
      *
      * @param taskId - идентификатор дела
      */

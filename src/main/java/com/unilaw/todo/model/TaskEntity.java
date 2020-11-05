@@ -52,14 +52,14 @@ public class TaskEntity {
      * Не может быть пустым, не пеезаписывается
      */
     @Column(name = "create_date")
-    private LocalDateTime createdData;
+    private LocalDateTime createdDate;
 
     /**
      * Время последнего изменения записи
      * Не может быть пустым
      */
     @Column(name = "update_date")
-    private LocalDateTime updatedData;
+    private LocalDateTime updatedDate;
 
     /**
      * ID списка
