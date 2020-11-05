@@ -11,7 +11,7 @@ import java.util.UUID;
  */
 @Data
 @Entity
-@Table(name = "task")
+@Table(name = "tasks")
 public class TaskEntity {
 
     /**
@@ -19,7 +19,6 @@ public class TaskEntity {
      * Является первичным ключом, заполняется автоматически
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private UUID id;
 

@@ -20,7 +20,7 @@ import org.springframework.data.annotation.LastModifiedDate;
  */
 @Data
 @Entity
-@Table(name = "list")
+@Table(name = "lists")
 @JsonIgnoreProperties(value = {"createdDate", "updatedDate"})
 public final class ListEntity implements Serializable {
 
@@ -29,7 +29,6 @@ public final class ListEntity implements Serializable {
      * Является первичным ключом, заполняется автоматически
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private UUID id;
 
