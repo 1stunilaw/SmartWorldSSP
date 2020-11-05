@@ -1,0 +1,32 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="changelog/20201102000001_create_tasks_table" author="unilaw">
+        <createTable tableName="tasks">
+            <column name="id" type="uuid">
+                <constraints nullable="false" unique="true" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment" type="VARCHAR(500)"/>
+            <column name="mark" type="BOOLEAN" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="priority" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="list" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_task_list" references="lists(id)" deleteCascade="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

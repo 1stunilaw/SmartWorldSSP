@@ -10,6 +10,6 @@ import java.util.UUID;
  */
 public interface TaskRepository extends JpaRepository<TaskEntity, UUID> {
 
-    long аштвAllByList_Id(UUID ListId);
+   // long  countAllByList_Id(UUID ListId);
 }
 

@@ -6,27 +6,27 @@ com/unilaw/todo/repository/ListRepository.java
  com.unilaw.todo.repository.ListRepository
 com/unilaw/todo/dto/request/ListRequest.java
  com.unilaw.todo.dto.request.ListRequest
-com/unilaw/todo/service/ListService.java
- com.unilaw.todo.service.ListService
-com/unilaw/todo/service/TaskService.java
- com.unilaw.todo.service.TaskService
+com/unilaw/todo/model/TaskEntity.java
+ com.unilaw.todo.model.TaskEntity
+com/unilaw/todo/model/Priority.java
+ com.unilaw.todo.model.Priority
 com/unilaw/todo/model/ListEntity.java
  com.unilaw.todo.model.ListEntity
 com/unilaw/todo/TodoApplication.java
  com.unilaw.todo.TodoApplication
 com/unilaw/todo/service/ITaskService.java
  com.unilaw.todo.service.ITaskService
-com/unilaw/todo/repository/TaskRepository.java
- com.unilaw.todo.repository.TaskRepository
-com/unilaw/todo/dto/response/AllListsResponse.java
- com.unilaw.todo.dto.response.AllListsResponse
-com/unilaw/todo/controller/ListController.java
- com.unilaw.todo.controller.ListController
-com/unilaw/todo/model/Priority.java
- com.unilaw.todo.model.Priority
 com/unilaw/todo/dto/request/TaskRequest.java
  com.unilaw.todo.dto.request.TaskRequest
-com/unilaw/todo/model/TaskEntity.java
- com.unilaw.todo.model.TaskEntity
+com/unilaw/todo/dto/response/AllListsResponse.java
+ com.unilaw.todo.dto.response.AllListsResponse
 com/unilaw/todo/dto/response/ListResponse.java
  com.unilaw.todo.dto.response.ListResponse
+com/unilaw/todo/repository/TaskRepository.java
+ com.unilaw.todo.repository.TaskRepository
+com/unilaw/todo/service/TaskService.java
+ com.unilaw.todo.service.TaskService
+com/unilaw/todo/controller/ListController.java
+ com.unilaw.todo.controller.ListController
+com/unilaw/todo/service/ListService.java
+ com.unilaw.todo.service.ListService
