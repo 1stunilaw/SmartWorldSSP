@@ -109,15 +109,15 @@ public class ListService implements IListService {
     /**
      * Формирование ответа (список)
      *
-     * @param entity - объект сущности (созданный список)
+     * @param listEntity - объект сущности (список)
      * @return ответ на запрос
      */
-    private static ListResponse createListResponse(ListEntity entity) {
+    private static ListResponse createListResponse(ListEntity listEntity) {
         ListResponse listResponse = new ListResponse();
-        listResponse.setId(entity.getId());
-        listResponse.setName(entity.getName());
-        listResponse.setCreatedDate(entity.getCreatedDate());
-        listResponse.setUpdatedDate(entity.getUpdatedDate());
+        listResponse.setId(listEntity.getId());
+        listResponse.setName(listEntity.getName());
+        listResponse.setCreatedDate(listEntity.getCreatedDate());
+        listResponse.setUpdatedDate(listEntity.getUpdatedDate());
 
         return listResponse;
     }

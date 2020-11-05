@@ -26,10 +26,10 @@ public class TaskResponse implements Serializable {
     private Priority priority;
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime creationTime;
+    private LocalDateTime createdDate;
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime updateTime;
+    private LocalDateTime updatedDate;
 
     private UUID listId;
 }
