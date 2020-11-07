@@ -1,7 +1,7 @@
 package com.unilaw.todo.service;
 
 import com.unilaw.todo.dto.request.TaskRequest;
-import com.unilaw.todo.dto.response.TaskResponse;
+import com.unilaw.todo.dto.response.*;
 import javassist.NotFoundException;
 
 import java.util.UUID;
@@ -10,6 +10,13 @@ import java.util.UUID;
  * Сервис для дел
  */
 public interface ITaskService {
+
+    /**
+     * Получить список дел по id списка
+     *
+     * @return список дел
+     */
+    AllTasksResponse getTasks(UUID listId) throws NotFoundException;
 
     /**
      * Создать новое дело

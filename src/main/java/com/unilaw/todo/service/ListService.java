@@ -2,7 +2,7 @@ package com.unilaw.todo.service;
 
 import com.unilaw.todo.dto.request.ListRequest;
 import com.unilaw.todo.dto.response.*;
-import com.unilaw.todo.model.ListEntity;
+import com.unilaw.todo.model.*;
 import com.unilaw.todo.repository.*;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

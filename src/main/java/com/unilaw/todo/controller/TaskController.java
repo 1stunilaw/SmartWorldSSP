@@ -25,6 +25,16 @@ public class TaskController {
     }
 
     /**
+     * Метод возврата списка дел
+     *
+     * @return список дел
+     */
+    @GetMapping("/list/{id}")
+    public AllTasksResponse getTasks(@PathVariable("id") UUID listId) throws NotFoundException{
+        return taskService.getTasks(listId);
+    }
+
+    /**
      * Метод создания дела
      *
      * @param task - запрос на создание дела
