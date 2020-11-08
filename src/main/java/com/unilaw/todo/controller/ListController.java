@@ -41,8 +41,10 @@ public class ListController {
      * @return список списков
      */
     @GetMapping("/list")
-    public AllListsResponse getLists() {
-        return listService.getLists();
+    public AllListsResponse getLists(
+            @RequestParam(value = "filter", required = false) String filter) //example: ?filter=name:'EXAMPLE2'
+    {
+        return listService.getLists(filter);
     }
 
     /**

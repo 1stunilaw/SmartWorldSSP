@@ -16,7 +16,7 @@ public interface IListService {
      *
      * @return список списков
      */
-    AllListsResponse getLists(); //TODO: добавить сортировку, фильтрацию, пагинацию
+    AllListsResponse getLists(String filter); //TODO: добавить сортировку, фильтрацию, пагинацию
 
     /**
      * Создать новый список

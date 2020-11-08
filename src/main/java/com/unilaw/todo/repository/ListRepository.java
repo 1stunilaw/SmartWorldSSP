@@ -8,6 +8,6 @@ import java.util.UUID;
 /**
  * Репозиторий для списков дел
  */
-public interface ListRepository extends JpaRepository<ListEntity, UUID> {
+public interface ListRepository extends JpaRepository<ListEntity, UUID>, JpaSpecificationExecutor<ListEntity> {
 
 }

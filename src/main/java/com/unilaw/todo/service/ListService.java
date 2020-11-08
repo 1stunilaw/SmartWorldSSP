@@ -4,12 +4,16 @@ import com.unilaw.todo.dto.request.ListRequest;
 import com.unilaw.todo.dto.response.*;
 import com.unilaw.todo.model.*;
 import com.unilaw.todo.repository.*;
+import com.unilaw.todo.service.filter.*;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.regex.*;
 import java.util.stream.Collectors;
 
 /**
@@ -40,11 +44,17 @@ public class ListService implements IListService {
      * @return ответ-список списков
      */
     @Override
-    public AllListsResponse getLists() { //TODO: добавить сортировку, фильтрацию, пагинацию
-        List<ListEntity> lists = listRepository.findAll();
+    public AllListsResponse getLists(String filter) { //TODO: добавить сортировку, фильтрацию, пагинацию
+
+        List<ListEntity> lists;
+
+        if (filter == null) {
+            lists = listRepository.findAll();
+        } else {
+            lists = listRepository.findAll(Specification.where(getFilter(filter)));
+        }
 
         List<ListResponse> listResponse = lists.stream().map(ListService::createListResponse).collect(Collectors.toList());
-
         AllListsResponse allListResponse = new AllListsResponse();
         allListResponse.setLists(listResponse);
 
@@ -120,5 +130,26 @@ public class ListService implements IListService {
         listResponse.setUpdatedDate(listEntity.getUpdatedDate());
 
         return listResponse;
+    }
+
+    /**
+     * Метод создания объекта для фильтрации списка
+     *
+     * @param filter - строка, содержащая ключ, операцию и значение
+     * @return объект (key,operation,value)
+     */
+    public ListSpecification getFilter(String filter) {
+
+        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)('[\\w\\s]+'),"); //(key)(operation)(value) example: ?filter=name:'math exam'
+        Matcher matcher = pattern.matcher(filter + ",");
+        matcher.find();
+
+        SearchCriteria criteria = new SearchCriteria();
+        criteria.setKey(matcher.group(1));
+        criteria.setOperation(matcher.group(2));
+        criteria.setValue(matcher.group(3).replace("'",""));
+
+        ListSpecification specFilter = new ListSpecification(criteria);
+        return specFilter;
     }
 }

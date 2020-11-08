@@ -49,6 +49,8 @@ public class TaskService implements ITaskService {
         List<TaskResponse> taskResponse = tasks.stream().map(TaskService::createTaskResponse).collect(Collectors.toList());
 
         AllTasksResponse allTaskResponse = new AllTasksResponse();
+        allTaskResponse.setId(list.getId());
+        allTaskResponse.setName(list.getName());
         allTaskResponse.setTasks(taskResponse);
 
         return allTaskResponse;
