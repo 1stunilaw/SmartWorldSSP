@@ -25,8 +25,8 @@ public class TaskService implements ITaskService {
     /**
      * Конструктор
      *
-     * @param taskRepository
-     * @param listRepository
+     * @param taskRepository - репозиторий для доступа к делам
+     * @param listRepository - репозиторий для доступа к спискам
      */
     @Autowired
     public TaskService(TaskRepository taskRepository, ListRepository listRepository) {
@@ -56,6 +56,13 @@ public class TaskService implements ITaskService {
         return allTaskResponse;
     }
 
+    /**
+     * Создание дела
+     *
+     * @param taskRequest - данные для создания дела
+     * @return ответ на запрос (формируется в методе)
+     * @throws NotFoundException
+     */
     @Override
     public TaskResponse createTask(TaskRequest taskRequest) throws NotFoundException {
         ListEntity list = listRepository.findById(taskRequest.getListId())
@@ -79,6 +86,14 @@ public class TaskService implements ITaskService {
         return createTaskResponse(task);
     }
 
+    /**
+     * Изменение дела по id
+     *
+     * @param taskRequest - данные для изменения дела
+     * @param taskId      - идентификатор дела
+     * @return ответ на запрос (формируется в методе)
+     * @throws NotFoundException
+     */
     @Override
     public TaskResponse changeTask(TaskRequest taskRequest, UUID taskId) throws NotFoundException {
         TaskEntity task = taskRepository.findById(taskId)
@@ -93,6 +108,12 @@ public class TaskService implements ITaskService {
         return createTaskResponse(task);
     }
 
+    /**
+     * Удаление дела по id
+     *
+     * @param taskId - идентификатор удаляемого дела
+     * @throws NotFoundException
+     */
     @Override
     public void deleteTask(UUID taskId) throws NotFoundException {
         if (!taskRepository.existsById(taskId)) {
@@ -101,6 +122,12 @@ public class TaskService implements ITaskService {
         taskRepository.deleteById(taskId);
     }
 
+    /**
+     * Метод для изменения значения метки дела на противоположное
+     *
+     * @param taskId - идентификатор дела
+     * @throws NotFoundException
+     */
     @Override
     public void markDone(UUID taskId) throws NotFoundException {
         TaskEntity task = taskRepository.findById(taskId)

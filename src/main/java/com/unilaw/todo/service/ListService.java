@@ -32,8 +32,8 @@ public class ListService implements IListService {
     /**
      * Конструктор
      *
-     * @param taskRepository
-     * @param listRepository
+     * @param taskRepository - репозиторий для доступа к делам
+     * @param listRepository - репозиторий для доступа к спискам
      */
     @Autowired
     public ListService(TaskRepository taskRepository, ListRepository listRepository) {
@@ -53,7 +53,7 @@ public class ListService implements IListService {
             page = 0;
         }
 
-        Page <ListEntity> listPage;
+        Page<ListEntity> listPage;
         Pageable sortAndPageable = PageRequest.of(page, DEFAULT_PAGE_SIZE, Sort.by(sort).descending());
         if (filter == null) {
             listPage = listRepository.findAll(sortAndPageable);
@@ -140,7 +140,7 @@ public class ListService implements IListService {
     }
 
     /**
-     * Метод создания объекта для фильтрации списка
+     * Метод создания спецификации для фильтрации списка
      *
      * @param filter - строка, содержащая ключ, операцию и значение
      * @return объект (key,operation,value)
