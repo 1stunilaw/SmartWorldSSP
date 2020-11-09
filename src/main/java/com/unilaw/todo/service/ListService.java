@@ -47,8 +47,7 @@ public class ListService implements IListService {
      * @return ответ-список списков
      */
     @Override
-    public AllListsResponse getLists(String filter, String sort, Integer page) { //TODO: добавить сортировку, фильтрацию, пагинацию
-        //List<ListEntity> lists;
+    public AllListsResponse getLists(String filter, String sort, Integer page) {
 
         if (page == null) {
             page = 0;

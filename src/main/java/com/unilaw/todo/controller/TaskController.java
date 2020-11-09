@@ -3,6 +3,7 @@ package com.unilaw.todo.controller;
 import com.unilaw.todo.dto.request.*;
 import com.unilaw.todo.dto.response.*;
 import com.unilaw.todo.service.*;
+import io.swagger.annotations.*;
 import javassist.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
+@Api(description = "Набор эндпоинтов для получения создания, изменения, удаления дел в списках")
 public class TaskController {
 
     private final TaskService taskService;
@@ -30,7 +32,10 @@ public class TaskController {
      * @return список дел
      */
     @GetMapping("/list/{id}")
-    public AllTasksResponse getTasks(@PathVariable("id") UUID listId) throws NotFoundException{
+    @ApiOperation("Метод для получения дел по id списка")
+    public AllTasksResponse getTasks(
+            @ApiParam(value = "id списка дел") @PathVariable("id") UUID listId
+    ) throws NotFoundException {
         return taskService.getTasks(listId);
     }
 
@@ -41,8 +46,11 @@ public class TaskController {
      * @return ответ на запрос (созданное дело)
      */
     @PostMapping("/task")
+    @ApiOperation("Метод для создания дела")
     @ResponseStatus(HttpStatus.CREATED)
-    public TaskResponse createTask(@RequestBody TaskRequest task)  throws NotFoundException {
+    public TaskResponse createTask(
+            @ApiParam(value = "Тело запроса") @RequestBody TaskRequest task
+    ) throws NotFoundException {
         return taskService.createTask(task);
     }
 
@@ -55,7 +63,11 @@ public class TaskController {
      * @throws NotFoundException
      */
     @PutMapping("/task/{id}")
-    public TaskResponse changeTask(@RequestBody TaskRequest task, @PathVariable("id") UUID taskId) throws NotFoundException {
+    @ApiOperation("Метод для изменения дела")
+    public TaskResponse changeTask(
+            @ApiParam(value = "Тело запроса") @RequestBody TaskRequest task,
+            @ApiParam(value = "id дела") @PathVariable("id") UUID taskId
+    ) throws NotFoundException {
         return taskService.changeTask(task, taskId);
     }
 
@@ -65,8 +77,11 @@ public class TaskController {
      * @param taskId - идентификатор удаляемого дела
      */
     @DeleteMapping("/task/{id}")
+    @ApiOperation("Метод для удаления дела")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteTask(@PathVariable("id") UUID taskId) throws NotFoundException {
+    public void deleteTask(
+            @ApiParam(value = "id дела") @PathVariable("id") UUID taskId
+    ) throws NotFoundException {
         taskService.deleteTask(taskId);
     }
 
@@ -76,8 +91,11 @@ public class TaskController {
      * @param taskId - идентификатор дела
      */
     @PostMapping("/markDone/{id}")
+    @ApiOperation("Метод для изменения метки дела на противоположную")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void markDone(@PathVariable("id") UUID taskId) throws NotFoundException {
+    public void markDone(
+            @ApiParam(value = "id дела") @PathVariable("id") UUID taskId
+    ) throws NotFoundException {
         taskService.markDone(taskId);
     }
 }

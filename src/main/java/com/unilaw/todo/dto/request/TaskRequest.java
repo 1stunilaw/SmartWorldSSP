@@ -1,6 +1,7 @@
 package com.unilaw.todo.dto.request;
 
 import com.unilaw.todo.model.Priority;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -9,9 +10,10 @@ import java.io.Serializable;
 import java.util.UUID;
 
 /**
- * Запрос на создание дела (задачи)
+ * Запрос на создание или изменение дела (задачи)
  */
 @Data
+@ApiModel(description = "Запрос (данные) для создания и изменения дела")
 public class TaskRequest implements Serializable {
 
     @NotBlank(message = "Name may not be empty")

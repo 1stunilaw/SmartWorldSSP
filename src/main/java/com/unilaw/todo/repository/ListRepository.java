@@ -12,6 +12,5 @@ import java.util.*;
  * Репозиторий для списков дел
  */
 public interface ListRepository extends JpaRepository<ListEntity, UUID>, JpaSpecificationExecutor<ListEntity> {
-    //List<ListEntity> findAllByCreatedDate (Specification<ListEntity>spec, Pageable page);
 
 }

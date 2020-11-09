@@ -1,40 +1,42 @@
-com/unilaw/todo/service/IListService.java
- com.unilaw.todo.service.IListService
-com/unilaw/todo/dto/response/TaskResponse.java
- com.unilaw.todo.dto.response.TaskResponse
-com/unilaw/todo/repository/ListRepository.java
- com.unilaw.todo.repository.ListRepository
+com/unilaw/todo/repository/TaskRepository.java
+ com.unilaw.todo.repository.TaskRepository
 com/unilaw/todo/dto/request/ListRequest.java
  com.unilaw.todo.dto.request.ListRequest
+com/unilaw/todo/repository/ListRepository.java
+ com.unilaw.todo.repository.ListRepository
+com/unilaw/todo/service/filter/SearchCriteria.java
+ com.unilaw.todo.service.filter.SearchCriteria
+com/unilaw/todo/service/filter/ListSpecification.java
+ com.unilaw.todo.service.filter.ListSpecification
 com/unilaw/todo/model/TaskEntity.java
  com.unilaw.todo.model.TaskEntity
-com/unilaw/todo/service/TaskService.java
- com.unilaw.todo.service.TaskService
 com/unilaw/todo/model/ListEntity.java
  com.unilaw.todo.model.ListEntity
 com/unilaw/todo/TodoApplication.java
  com.unilaw.todo.TodoApplication
+com/unilaw/todo/swagger/SpringFoxConfig.java
+ com.unilaw.todo.swagger.SpringFoxConfig
+com/unilaw/todo/model/Priority.java
+ com.unilaw.todo.model.Priority
+com/unilaw/todo/service/IListService.java
+ com.unilaw.todo.service.IListService
+com/unilaw/todo/dto/response/TaskResponse.java
+ com.unilaw.todo.dto.response.TaskResponse
 com/unilaw/todo/service/ITaskService.java
  com.unilaw.todo.service.ITaskService
-com/unilaw/todo/repository/TaskRepository.java
- com.unilaw.todo.repository.TaskRepository
 com/unilaw/todo/dto/response/AllListsResponse.java
  com.unilaw.todo.dto.response.AllListsResponse
 com/unilaw/todo/dto/response/AllTasksResponse.java
  com.unilaw.todo.dto.response.AllTasksResponse
 com/unilaw/todo/dto/response/ListResponse.java
  com.unilaw.todo.dto.response.ListResponse
-com/unilaw/todo/service/filter/SearchCriteria.java
- com.unilaw.todo.service.filter.SearchCriteria
-com/unilaw/todo/model/Priority.java
- com.unilaw.todo.model.Priority
 com/unilaw/todo/dto/request/TaskRequest.java
  com.unilaw.todo.dto.request.TaskRequest
-com/unilaw/todo/controller/TaskController.java
- com.unilaw.todo.controller.TaskController
-com/unilaw/todo/service/filter/ListSpecification.java
- com.unilaw.todo.service.filter.ListSpecification
-com/unilaw/todo/controller/ListController.java
- com.unilaw.todo.controller.ListController
 com/unilaw/todo/service/ListService.java
  com.unilaw.todo.service.ListService
+com/unilaw/todo/service/TaskService.java
+ com.unilaw.todo.service.TaskService
+com/unilaw/todo/controller/ListController.java
+ com.unilaw.todo.controller.ListController
+com/unilaw/todo/controller/TaskController.java
+ com.unilaw.todo.controller.TaskController

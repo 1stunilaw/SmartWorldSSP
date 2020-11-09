@@ -3,6 +3,7 @@ package com.unilaw.todo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
