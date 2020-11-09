@@ -42,9 +42,11 @@ public class ListController {
      */
     @GetMapping("/list")
     public AllListsResponse getLists(
-            @RequestParam(value = "filter", required = false) String filter) //example: ?filter=name:'EXAMPLE2'
+            @RequestParam(value = "filter", required = false) String filter, //example: ?filter=name:'EXAMPLE2'
+            @RequestParam (value = "orderBy", required = false, defaultValue = "createdDate") String sort,
+            @RequestParam (value = "page", required = false) Integer page)
     {
-        return listService.getLists(filter);
+        return listService.getLists(filter, sort, page);
     }
 
     /**

@@ -7,6 +7,7 @@ import com.unilaw.todo.repository.*;
 import com.unilaw.todo.service.filter.*;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,8 @@ public class ListService implements IListService {
 
     private final ListRepository listRepository;
 
+    private static final int DEFAULT_PAGE_SIZE = 10;
+
     /**
      * Конструктор
      *
@@ -44,17 +47,22 @@ public class ListService implements IListService {
      * @return ответ-список списков
      */
     @Override
-    public AllListsResponse getLists(String filter) { //TODO: добавить сортировку, фильтрацию, пагинацию
+    public AllListsResponse getLists(String filter, String sort, Integer page) { //TODO: добавить сортировку, фильтрацию, пагинацию
+        //List<ListEntity> lists;
 
-        List<ListEntity> lists;
-
-        if (filter == null) {
-            lists = listRepository.findAll();
-        } else {
-            lists = listRepository.findAll(Specification.where(getFilter(filter)));
+        if (page == null) {
+            page = 0;
         }
 
-        List<ListResponse> listResponse = lists.stream().map(ListService::createListResponse).collect(Collectors.toList());
+        Page <ListEntity> listPage;
+        Pageable sortAndPageable = PageRequest.of(page, DEFAULT_PAGE_SIZE, Sort.by(sort).descending());
+        if (filter == null) {
+            listPage = listRepository.findAll(sortAndPageable);
+        } else {
+            listPage = listRepository.findAll(Specification.where(getFilter(filter)), sortAndPageable);
+        }
+
+        List<ListResponse> listResponse = listPage.stream().map(ListService::createListResponse).collect(Collectors.toList());
         AllListsResponse allListResponse = new AllListsResponse();
         allListResponse.setLists(listResponse);
 
@@ -140,14 +148,15 @@ public class ListService implements IListService {
      */
     public ListSpecification getFilter(String filter) {
 
-        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)('[\\w\\s]+'),"); //(key)(operation)(value) example: ?filter=name:'math exam'
+        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),"); //(key)(operation)(value) example: ?filter=name:'math ...'
+        // Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)('[\\w\\s]+'),"); //(key)(operation)(value) example: ?filter=name:'math exam'
         Matcher matcher = pattern.matcher(filter + ",");
         matcher.find();
 
         SearchCriteria criteria = new SearchCriteria();
         criteria.setKey(matcher.group(1));
         criteria.setOperation(matcher.group(2));
-        criteria.setValue(matcher.group(3).replace("'",""));
+        criteria.setValue(matcher.group(3)/*.replace("'","")*/);
 
         ListSpecification specFilter = new ListSpecification(criteria);
         return specFilter;
